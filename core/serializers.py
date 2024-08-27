@@ -1,3 +1,5 @@
+import base64
+
 from rest_framework import serializers
 from .models import Capteur, CategorieProduit, Commande, Dispositif, Gps, ProduitFrais, ProduitSec, SpecifiqueProduitFrais, SpecifiqueProduitSec, Utilisateur, UtilisateurDispositif
 
@@ -66,6 +68,7 @@ class SpecifiqueProduitSecSerializer(serializers.ModelSerializer):
 
 
 class UtilisateurSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(max_length=None, use_url=True)  # Assurez-vous que use_url est True
 
     class Meta:
         model = Utilisateur

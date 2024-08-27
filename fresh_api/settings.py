@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,8 +25,10 @@ SECRET_KEY = 'django-insecure-q+4-7fws9+wbxas+6xuxr^z^)o0b@(77%qcd=qd!!m*^4pefj-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Application definition
 
@@ -39,8 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'core',
-
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',  # Pour le filtrage
+        'rest_framework.filters.SearchFilter',                # Pour la recherche
+        'rest_framework.filters.OrderingFilter',              # Pour le tri
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,  # Nombre d'éléments par page
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -112,6 +112,7 @@ class Utilisateur(models.Model):
     email = models.EmailField(unique=True)
     mot_de_passe = models.CharField(max_length=255)
     date_de_naissance = models.DateField(null=True, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)  # Nouveau champ image
     cree_a = models.DateTimeField(null=True, blank=True)
     modifie_a = models.DateTimeField(null=True, blank=True)
 

@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import CapteurViewSet, CategorieProduitsViewSet, CommandeViewSet, DispositifViewSet, GPSViewSet, ProduitsFraisViewSet, ProduitsSecViewSet, SpecifiqueProduitFraisViewSet, SpecifiqueProduitSecViewSet, UtilisateurViewSet, UtilisateurDispositifViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register(r'capteurs', CapteurViewSet)
